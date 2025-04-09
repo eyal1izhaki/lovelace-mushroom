@@ -36,9 +36,11 @@ export function callService(
 
 export function computeMediaNameDisplay(
   config: MediaPlayerCardConfig,
-  entity: MediaPlayerEntity
+  entity: MediaPlayerEntity,
+  hass: HomeAssistant
 ): string {
-  let name = config.name || entity.attributes.friendly_name || "";
+  let language = hass.language;
+  let name = config.name || entity.attributes[`friendly_name_${language}`] || entity.attributes.friendly_name || "";
   if (
     ![UNAVAILABLE, UNKNOWN, OFF].includes(entity.state) &&
     config.use_media_info

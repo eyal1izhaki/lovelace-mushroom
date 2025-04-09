@@ -357,6 +357,7 @@ export class TemplateCard extends MushroomBaseElement implements LovelaceCard {
           template: this._config[key] ?? "",
           entity_ids: this._config.entity_id,
           variables: {
+            language: this.hass.language,
             config: this._config,
             user: this.hass.user!.name,
             entity: this._config.entity,
