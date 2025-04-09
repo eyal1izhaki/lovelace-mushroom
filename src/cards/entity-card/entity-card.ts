@@ -72,7 +72,8 @@ export class EntityCard
       return this.renderNotFound(this._config);
     }
 
-    const name = this._config.name || stateObj.attributes.friendly_name || "";
+    const language = this.hass.language;
+    const name = this._config.name || stateObj.attributes[`friendly_name_${language}`] || stateObj.attributes.friendly_name || "";
     const icon = this._config.icon;
     const appearance = computeAppearance(this._config);
 
